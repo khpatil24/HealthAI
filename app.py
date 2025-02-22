@@ -1,8 +1,13 @@
 from flask import Flask, request, jsonify
 import numpy as np
-from main import model, dataset, process_user_input  # Ensure 'model', 'dataset', and 'process_user_input' exist in main.py
+import pickle
+#from main import model, dataset, process_user_input  # Ensure 'model', 'dataset', and 'process_user_input' exist in main.py
 
 app = Flask(__name__)
+
+model_path = 'model.pkl'
+with open(model_path, 'rb') as f:
+    model = pickle.load(f)
 
 # API route to process input
 @app.route('/process', methods=['POST'])
@@ -11,8 +16,7 @@ def process():
     user_text = data.get('text', '')
     if not user_text:
         return jsonify({'error': 'No text provided'}), 400
-    
-    response_vector = process_user_input(user_text)
+    response_vector = model.process_user_input(user_text)
     return jsonify({'symptom_vector': response_vector})
 
 # Run Flask app
