@@ -91,17 +91,20 @@ def process_user_input(user_text):
         if any(word.strip().lower() in symptom.lower() for word in extracted_symptoms):
             symptom_vector[i] = 1
     
-    return symptom_vector.reshape(1, -1)
+    prediction = classifier.predict(symptom_vector.reshape(1, -1))
+    predicted_disease = le.inverse_transform(prediction)[0]
+    print(f"Predicted Disease: {predicted_disease}")
+    return predicted_disease
 
 
 # In[265]:
 
 
-user_input = "I have loss of apetite, abdominal pain and yellowing of eye."
+'''user_input = "I have loss of apetite, abdominal pain and yellowing of eye."
 processed_input = process_user_input(user_input)
 prediction = classifier.predict(processed_input)
 predicted_disease = le.inverse_transform(prediction)[0]
 
-print(f"Predicted Disease: {predicted_disease}")
+print(f"Predicted Disease: {predicted_disease}")'''
 #print(processed_input)
 
