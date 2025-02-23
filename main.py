@@ -14,7 +14,7 @@ import google.generativeai as genai
 # In[257]:
 
 
-dataset = pd.read_csv(r'Training.csv')
+dataset = pd.read_csv(r'Training1.csv')
 X_train = dataset.iloc[:, :-1].values
 y_train = dataset.iloc[:, -1].values
 
@@ -22,7 +22,7 @@ y_train = dataset.iloc[:, -1].values
 # In[258]:
 
 
-dataset2 = pd.read_csv(r'Testing.csv')
+dataset2 = pd.read_csv(r'Testing1.csv')
 X_test = dataset2.iloc[:, :-1].values
 y_test = dataset2.iloc[:, -1].values
 
